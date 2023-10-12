@@ -88,8 +88,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 
 C'est le point de départ de notre application où nous initialisons React et affichons le composant `App`. Voici ce qui se passe dans ce code :
 
-- `import React from "react"` : cela importe la bibliothèque React, ce qui nous permet d'utiliser des éléments et des composants React dans ce fichier.
-- `import { createRoot } from "react-dom/client"` : cette ligne importe la fonction `createRoot` de la bibliothèque `react-dom/client`. `createRoot` est utilisée pour créer une "racine" à partir de laquelle un composant React va pouvoir être monté et affiché dans le DOM.
+- `import ReactDOM from "react-dom/client"` : cette ligne importe la fonction la bibliothèque `react-dom/client` dont utiliserons la méthode `createRoot`. `createRoot` permet de créer une "racine" à partir de laquelle un composant React va pouvoir être monté et affiché dans le DOM.
 - `import App from "./App.jsx"` : cette ligne importe le composant `App` que nous avons créé dans le fichier `App.jsx`. Ce composant sera rendu dans la suite du code.
 - `createRoot(document.getElementById("root")).render(<App />);` : cette partie du code crée une nouvelle racine pour l'application (généralement un élément HTML avec l'ID `root`) en utilisant `createRoot`. Ensuite, la méthode `.render()` est appelée avec le composant `App` en tant que contenu à afficher. Cela signifie que le composant `App` est la racine de notre application React, et il sera rendu dans l'élément avec l'ID `root` dans le HTML.
 
