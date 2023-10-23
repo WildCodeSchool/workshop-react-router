@@ -258,7 +258,7 @@ Mais tu as certainement remarqué qu'entre nos 2 routes, beaucoup de choses se r
 /* ... */
 ```
 
-Le composant `<App />` peut encore nous être _utile_. Modifions le pour reprendre tout ce qui se répète entre nos routes :
+Le composant `<App />` peut encore nous être _utile_. Modifions le pour reprendre ce qui est commun à toutes nos routes :
 
 ```jsx
 import { Link } from "react-router-dom";
@@ -353,7 +353,7 @@ Selon la valeur de cet état (`currentLocation`), nous pouvions choisir explicit
 - `<Home />` pour `"/"`
 - `<About />` pour `"/about"`
 
-Au lieu de spécifier explicitement quel composant doit être affiché dans `<main>`, nous pouvons utiliser un outil très pratique de React Router : `<Outlet />` :
+Au lieu de spécifier explicitement quel composant doit être affiché dans `<main>`, nous pouvons utiliser un outil très pratique de React Router : `<Outlet />`.
 
 ```jsx
 import { Link, Outlet } from "react-router-dom";
@@ -438,11 +438,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 ```
 
-Dans cet exemple, la route `"/articles/:id"` est configurée avec un segment dynamique `:id`.
+Dans cet exemple, la route `"/articles/:id"` est configurée avec un segment dynamique `:id` : ce sont les `:` qui indiquent que le segment est dynamique.
 Cela signifie que l'URL `/articles/123` correspondra à cette route, où `123` est un exemple d'identifiant d'article.
 Grâce à ce segment dynamique, nous pouvons extraire l'identifiant de l'article directement depuis l'URL et l'utiliser pour afficher les détails de l'article correspondant.
 
-React Router nous fournit encore tous les outils. Cette fois, c'est le hook `useParams` qui va nous aider dans le composant `Article` :
+React Router nous fournit encore tous les outils nécessaires. Cette fois, c'est le hook `useParams` qui va nous aider dans le composant `Article` :
 
 ```jsx
 import { useParams } from "react-router-dom";
@@ -531,9 +531,9 @@ function App() {
       <nav>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/articles/42">Article 42</Link>
-        <Link to="/articles/123">Article 123</Link>
-        <Link to="/articles/666">Article 666</Link>
+        <Link to="/articles/1">Article 1</Link>
+        <Link to="/articles/2">Article 2</Link>
+        <Link to="/articles/3">Article 3</Link>
       </nav>
       <main>
         <Outlet />
@@ -547,6 +547,6 @@ export default App;
 
 Tu peux maintenant tester tes nouvelles pages, et faire tes propres expériences avec des segments dynamiques.
 
-## Au démarrage
+# STOP
 
-useEffect / loader
+Cela fait déjà pas mal de choses. Laisse toi le temps de digérer tout ça avant de [passer à la suite](MORE).
