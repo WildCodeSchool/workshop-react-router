@@ -375,24 +375,24 @@ Maintenant que nous avons examiné deux approches pour gérer les mises à jour 
 
 Avantages :
 
-- Flexibilité : useEffect permet de réagir à divers types de changements, tels que les modifications d'état ou les mises à jour de props.
-- Contrôle total : Vous avez un contrôle total sur les actions effectuées en réponse aux changements.
+- **Flexibilité :** useEffect permet de réagir à divers types de changements, tels que les modifications d'état ou les mises à jour de props.
+- **Contrôle total :** Vous avez un contrôle total sur les actions effectuées en réponse aux changements.
 
 Inconvénients :
 
-- Difficulté à gérer le chargement initial : Pour gérer le chargement initial de manière efficace, des rendus conditionnels ou des états spéciaux sont souvent nécessaires.
-- Peut entraîner des rendus inutiles : useEffect peut être déclenché plusieurs fois pour un même changement, ce qui peut provoquer des rendus inutiles.
+- **Difficulté à gérer le chargement initial :** Pour gérer le chargement initial de manière efficace, des rendus conditionnels ou des états spéciaux sont souvent nécessaires.
+- **Peut entraîner des rendus inutiles :** useEffect peut être déclenché plusieurs fois pour un même changement, ce qui peut provoquer des rendus inutiles.
 
 ### Loaders de React Router
 
 Avantages :
 
-- Préchargement des données : Les loaders de React Router permettent de précharger les données avant le rendu, améliorant ainsi les performances et l'expérience utilisateur.
-- Gestion automatique du chargement initial : Les loaders sont déclenchés automatiquement lors de l'activation de la route, ce qui facilite la gestion du chargement initial.
-- Structure claire : Les loaders sont associés aux routes correspondantes, ce qui rend la logique de chargement plus claire et structurée.
+- **Préchargement des données :** Les loaders de React Router permettent de précharger les données avant le rendu, améliorant ainsi les performances et l'expérience utilisateur.
+- **Gestion automatique du chargement initial :** Les loaders sont déclenchés automatiquement lors de l'activation de la route, ce qui facilite la gestion du chargement initial.
+- **Structure claire :** Les loaders sont associés aux routes correspondantes, ce qui rend la logique de chargement plus claire et structurée.
 
 Inconvénients :
 
-- Moins de flexibilité : Les loaders sont conçus pour le chargement de données lors du changement de route, ce qui les limite à ce contexte. Si vous avez besoin de réagir à des changements plus variés, useEffect peut être plus adapté.
+- **Moins de flexibilité :** Les loaders sont conçus pour le chargement de données lors du changement de route, ce qui les limite à ce contexte. Si vous avez besoin de réagir à des changements plus variés, useEffect peut être plus adapté.
 
 Le choix entre `useEffect` et les loaders dépend de ton cas d'utilisation spécifique. Le mieux reste de demander des conseils pour être sûr de toi.
