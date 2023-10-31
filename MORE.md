@@ -53,7 +53,7 @@ export default Home;
 
 La fonction `getWeatherOfTheDay` retourne directement une chaine de caractères.
 Elle pourrait faire des opérations plus complexes comme appeler une API par exemple.
-Ce n'est pas qui nous intéresse aujourd'hui&nbsp;: ce qui nous intéresse à ce stade c'est nous les récupérons les données _au moment du clic_.
+Ce n'est pas qui ce nous intéresse aujourd'hui&nbsp;: ce qui nous intéresse à ce stade c'est nous les récupérons les données _au moment du clic_.
 
 Dans cette version, nous sommes limités par les événements du DOM&nbsp;: il ne se passera rien tant que la personne qui visite la page n'aura pas cliqué sur le bouton.
 Parfois (voir même souvent...), tu auras besoin de déclencher du code dès le "démarrage" de ta page.
