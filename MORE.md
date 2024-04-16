@@ -251,15 +251,15 @@ import { useParams } from "react-router-dom";
 
 const getSomeData = (id) => {
   const allData = {
-    42: {
+    1: {
       title: "Lorem Ipsum",
       content: "Lorem ipsum dolor sit amet",
     },
-    123: {
+    2: {
       title: "Schnapsum",
       content: "Lorem Elsass ipsum Salut bisamme",
     },
-    666: {
+    3: {
       title: "Cupcake Ipsum",
       content: "Tiramisu pastry wafer brownie soufflé",
     },
@@ -306,15 +306,15 @@ Une autre approche pour gérer les mises à jour consiste à utiliser les loader
 
 const getSomeData = (id) => {
   const allData = {
-    42: {
+    1: {
       title: "Lorem Ipsum",
       content: "Lorem ipsum dolor sit amet",
     },
-    123: {
+    2: {
       title: "Schnapsum",
       content: "Lorem Elsass ipsum Salut bisamme",
     },
-    666: {
+    3: {
       title: "Cupcake Ipsum",
       content: "Tiramisu pastry wafer brownie soufflé",
     },
