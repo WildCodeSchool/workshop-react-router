@@ -24,7 +24,7 @@ const getWeatherOfTheDay = () => {
 };
 
 function Home() {
-  const [weather, setWeather] = useState(null);
+  const [weather, setWeather] = useState(null as string | null);
 
   return (
     <>
@@ -73,7 +73,7 @@ const getWeatherOfTheDay = () => {
 };
 
 function Home() {
-  const [weather, setWeather] = useState(null);
+  const [weather, setWeather] = useState(null as string | null);
 
   useEffect(() => {
     const weatherOfTheDay = getWeatherOfTheDay();
@@ -113,7 +113,7 @@ Une autre approche pour exécuter des instructions au démarrage de la page est 
 Les loaders sont des fonctions spéciales que tu peux associer à des routes pour charger des données **avant le rendu de la page**.
 Cette méthode permet d'obtenir des données dès que possible, ce qui peut être essentiel pour une expérience utilisateur fluide.
 
-Pour illustrer cette approche, reprenons notre route `Home` dans `main.jsx`:
+Pour illustrer cette approche, reprenons notre route `Home` dans `main.tsx`:
 
 ```jsx
 // ...
@@ -154,7 +154,7 @@ Dans le composant Home&nbsp;:
 import { useLoaderData } from "react-router-dom";
 
 function Home() {
-  const weather = useLoaderData();
+  const weather = useLoaderData() as string;
 
   return (
     <>
@@ -182,9 +182,7 @@ const router = createBrowserRouter([
   {
     element: <App />,
     loader: () => {
-      const weather = "sunny";
-
-      return weather;
+      return getWeatherOfTheDay();
     },
     id: "app",
     children: [
@@ -207,7 +205,7 @@ Les données chargées globalement peuvent être accessibles dans n'importe quel
 import { useRouteLoaderData } from "react-router-dom";
 
 function Home() {
-  const weather = useRouteLoaderData("app");
+  const weather = useRouteLoaderData("app") as string;
 
   return (
     <>
@@ -249,32 +247,39 @@ Il permet d'effectuer **des actions en réponse à des changements spécifiques*
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const getSomeData = (id) => {
-  const allData = {
-    1: {
-      title: "Lorem Ipsum",
-      content: "Lorem ipsum dolor sit amet",
-    },
-    2: {
-      title: "Schnapsum",
-      content: "Lorem Elsass ipsum Salut bisamme",
-    },
-    3: {
-      title: "Cupcake Ipsum",
-      content: "Tiramisu pastry wafer brownie soufflé",
-    },
-  };
+const allData = [
+  {
+    id: 1,
+    title: "Lorem Ipsum",
+    content: "Lorem ipsum dolor sit amet",
+  },
+  {
+    id: 2,
+    title: "Schnapsum",
+    content: "Lorem Elsass ipsum Salut bisamme",
+  },
+  {
+    id: 3,
+    title: "Cupcake Ipsum",
+    content: "Tiramisu pastry wafer brownie soufflé",
+  },
+];
 
-  return allData[id];
+type Data = typeof allData[0];
+
+const getSomeData = (id: number) => {
+  return allData.find((article) => article.id === id) as Data | null;
 };
 
 function Article() {
   const { id } = useParams();
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(null as Data | null);
 
   useEffect(() => {
-    const someData = getSomeData(id);
+    const idAsInt = parseInt(id ?? "0");
+
+    const someData = getSomeData(idAsInt);
 
     setData(someData);
   }, [id]);
@@ -304,23 +309,28 @@ Une autre approche pour gérer les mises à jour consiste à utiliser les loader
 ```jsx
 // ...
 
-const getSomeData = (id) => {
-  const allData = {
-    1: {
-      title: "Lorem Ipsum",
-      content: "Lorem ipsum dolor sit amet",
-    },
-    2: {
-      title: "Schnapsum",
-      content: "Lorem Elsass ipsum Salut bisamme",
-    },
-    3: {
-      title: "Cupcake Ipsum",
-      content: "Tiramisu pastry wafer brownie soufflé",
-    },
-  };
+const allData = [
+  {
+    id: 1,
+    title: "Lorem Ipsum",
+    content: "Lorem ipsum dolor sit amet",
+  },
+  {
+    id: 2,
+    title: "Schnapsum",
+    content: "Lorem Elsass ipsum Salut bisamme",
+  },
+  {
+    id: 3,
+    title: "Cupcake Ipsum",
+    content: "Tiramisu pastry wafer brownie soufflé",
+  },
+];
 
-  return allData[id];
+type Data = typeof allData[0];
+
+const getSomeData = (id: number) => {
+  return allData.find((article) => article.id === id) as Data | null;
 };
 
 // router creation
@@ -334,7 +344,9 @@ const router = createBrowserRouter([
         path: "/articles/:id",
         element: <Article />,
         loader: ({ params }) => {
-          return getSomeData(params.id);
+          const idAsInt = parseInt(params.id ?? "0");
+
+          return getSomeData(idAsInt);
         },
       },
     ],
@@ -353,8 +365,13 @@ Le résultat du loader (les données de l'article) est ensuite disponible pour l
 ```jsx
 import { useLoaderData } from "react-router-dom";
 
+type Data = {
+    title: string;
+    content: string;
+}
+
 function Article() {
-  const data = useLoaderData();
+  const data = useLoaderData() as Data;
 
   return (
     <article>

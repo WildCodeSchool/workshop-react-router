@@ -1,6 +1,6 @@
 ## Pourquoi React Router
 
-Commence par créer un "bac à sable" React/JavaScript pour faire quelques expériences (choisis bien `React` et `JavaScript` à la création du projet)&nbsp;:
+Commence par créer un "bac à sable" React/JavaScript pour faire quelques expériences (choisis bien `React` et `TypeScript` à la création du projet)&nbsp;:
 
 ```bash
 npm create vite@latest my-app-with-router
@@ -13,10 +13,10 @@ cd my-app-with-router
 npm install
 ```
 
-Ouvre le code dans ton IDE (`code .` ?). Prépare ensuite 2 fichiers `src/pages/Home.jsx` et `src/pages/About.jsx` (pense à créer le dossier `pages` dans `src`) avec des composants "Hello World"&nbsp;:
+Ouvre le code dans ton IDE (`code .` ?). Prépare ensuite 2 fichiers `src/pages/Home.tsx` et `src/pages/About.tsx` (pense à créer le dossier `pages` dans `src`) avec des composants "Hello World"&nbsp;:
 
 ```jsx
-// Home.jsx
+// Home.tsx
 
 function Home() {
   return <h1>Hello from Home</h1>;
@@ -28,7 +28,7 @@ export default Home;
 Et&nbsp;:
 
 ```jsx
-// About.jsx
+// About.tsx
 
 function About() {
   return <h1>Hello from About</h1>;
@@ -37,7 +37,7 @@ function About() {
 export default About;
 ```
 
-Enfin, remplace le contenu du fichier `src/App.jsx` avec ces lignes&nbsp;:
+Enfin, remplace le contenu du fichier `src/App.tsx` avec ces lignes&nbsp;:
 
 ```jsx
 import { useState } from "react";
@@ -101,14 +101,14 @@ C'est là qu'intervient React Router, un outil qui facilite la gestion de la nav
 
 ## Agir à la racine
 
-Pour modifier réellement l'url du navigateur et avoir une vraie gestion de la navigation, nous allons mettre de côté `App.jsx` pour l'instant, et nous intéresser à `main.jsx` dont une version allégée ressemble à ceci&nbsp;:
+Pour modifier réellement l'url du navigateur et avoir une vraie gestion de la navigation, nous allons mettre de côté `App.tsx` pour l'instant, et nous intéresser à `main.tsx` dont une version allégée ressemble à ceci&nbsp;:
 
-Ce qui suit est une presentation du fonctionnement du fichier `main.jsx`&nbsp;: tu n'as pas besoin de le modifier.
+Ce qui suit est une presentation du fonctionnement du fichier `main.tsx`&nbsp;: tu n'as pas besoin de le modifier.
 {: .alert-warning}
 
 ```jsx
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import App from "./App.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 ```
@@ -122,10 +122,10 @@ import ReactDOM from "react-dom/client";
 Cette ligne importe le module `react-dom/client` dont nous utiliserons ensuite la méthode `createRoot`. `createRoot` permet de créer une "racine" à partir de laquelle un composant React va pouvoir être monté et affiché dans le DOM.
 
 ```jsx
-import App from "./App.jsx";
+import App from "./App.tsx";
 ```
 
-Cette ligne importe le composant `App` que nous avons créé dans le fichier `App.jsx`. Ce composant sera rendu dans la suite du code.
+Cette ligne importe le composant `App` que nous avons créé dans le fichier `App.tsx`. Ce composant sera rendu dans la suite du code.
 
 ```jsx
 createRoot(document.getElementById("root")).render(<App />);
@@ -149,7 +149,7 @@ Installe dans ton projet `react-router-dom` (la version de React Router pour le 
 npm install react-router-dom
 ```
 
-Et modifie ensuite `main.jsx` comme ceci&nbsp;:
+Et modifie ensuite `main.tsx` comme ceci&nbsp;:
 
 ```jsx
 import ReactDOM from "react-dom/client";
@@ -195,9 +195,13 @@ const router = createBrowserRouter([
 
 // rendering
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
-);
+const rootElement = document.getElementById("root");
+
+if (rootElement != null) {
+  ReactDOM.createRoot(rootElement).render(
+    <RouterProvider router={router} />
+  );
+}
 ```
 
 Ce code illustre l'utilisation de React Router pour configurer des routes dans une application React.
@@ -322,9 +326,13 @@ const router = createBrowserRouter([
 
 // rendering
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
-);
+const rootElement = document.getElementById("root");
+
+if (rootElement != null) {
+  ReactDOM.createRoot(rootElement).render(
+    <RouterProvider router={router} />
+  );
+}
 ```
 
 Nous reprenons ici `App` comme le composant "principal"&nbsp;: sans `path` précisé, l'élément sera toujours affiché. De plus, nous ajoutons des enfants (`children`) à `App` pour gérer les routes spécifiques à `Home` et `About`.
@@ -411,7 +419,7 @@ Plutôt que de créer une route statique pour chaque article, nous pouvons utili
 Pense à faire un commit de tes dernières modifs avant de changer ton code.
 {: .alert-warning}
 
-Créé un nouveau composant `Article` dans un nouveau fichier `src/pages/Article.jsx`&nbsp;:
+Créé un nouveau composant `Article` dans un nouveau fichier `src/pages/Article.tsx`&nbsp;:
 
 ```jsx
 function Article() {
@@ -421,7 +429,7 @@ function Article() {
 export default Article;
 ```
 
-Et modifie `src/main.jsx` (les autres routes ont été supprimées pour te faciliter la lecture)&nbsp;:
+Et modifie `src/main.tsx` (les autres routes ont été supprimées pour te faciliter la lecture)&nbsp;:
 
 ```jsx
 import ReactDOM from "react-dom/client";
@@ -442,9 +450,13 @@ const router = createBrowserRouter([
 
 // rendering
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
-);
+const rootElement = document.getElementById("root");
+
+if (rootElement != null) {
+  ReactDOM.createRoot(rootElement).render(
+    <RouterProvider router={router} />
+  );
+}
 ```
 
 Dans cet exemple, la route `"/articles/:id"` est configurée avec un segment dynamique `:id`&nbsp;: ce sont les `:` qui indiquent que le segment est dynamique.
@@ -486,7 +498,7 @@ Est une version plus courte qui utilise la déstructuration de l'objet retourné
 Dans notre cas, il contient `id`, car c'est le nom du segment dynamique dans `"/articles/:id"`.
 {: .alert-info}
 
-Tu peux remettre toutes les routes dans `src/main.jsx`&nbsp;:
+Tu peux remettre toutes les routes dans `src/main.tsx`&nbsp;:
 
 ```jsx
 import ReactDOM from "react-dom/client";
@@ -524,9 +536,13 @@ const router = createBrowserRouter([
 
 // rendering
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
-);
+const rootElement = document.getElementById("root");
+
+if (rootElement != null) {
+  ReactDOM.createRoot(rootElement).render(
+    <RouterProvider router={router} />
+  );
+}
 ```
 
 Et ajouter des liens dans `App`&nbsp;:
