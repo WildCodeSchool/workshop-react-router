@@ -1,6 +1,6 @@
 ## Pourquoi React Router
 
-Commence par créer un "bac à sable" React/JavaScript pour faire quelques expériences (choisis bien `React` et `TypeScript` à la création du projet)&nbsp;:
+Commence par créer un "bac à sable" React/TypeScript pour faire quelques expériences (choisis bien `React` et `TypeScript` à la création du projet)&nbsp;:
 
 ```bash
 npm create vite@latest my-app-with-router
