@@ -151,7 +151,7 @@ Dans ce cas, nous utilisons un loader pour charger les données météo avant le
 Dans le composant Home&nbsp;:
 
 ```jsx
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router";
 
 function Home() {
   const weather = useLoaderData() as string;
@@ -202,7 +202,7 @@ Cela signifie que les données sont chargées dès le démarrage de l'applicatio
 Les données chargées globalement peuvent être accessibles dans n'importe quelle partie de l'application, et nous pouvons les récupérer à l'aide du hook `useRouteLoaderData` en spécifiant l'identifiant du loader ciblé (dans ce cas, `"app"`)&nbsp;:
 
 ```jsx
-import { useRouteLoaderData } from "react-router-dom";
+import { useRouteLoaderData } from "react-router";
 
 function Home() {
   const weather = useRouteLoaderData("app") as string;
@@ -229,7 +229,7 @@ L'utilisation de `useEffect` et les loaders de React Router sont là encore 2 op
 Revenons cette fois sur notre page `Article`&nbsp;:
 
 ```jsx
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
 function Article() {
   const { id } = useParams();
@@ -245,7 +245,7 @@ Il permet d'effectuer **des actions en réponse à des changements spécifiques*
 
 ```jsx
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
 const allData = [
   {
@@ -363,7 +363,7 @@ De manière similaire aux props des composants, `params` est extrait du premier 
 Le résultat du loader (les données de l'article) est ensuite disponible pour le composant `Article` via le hook `useLoaderData` comme vu précédemment&nbsp;:
 
 ```jsx
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router";
 
 type Data = {
     title: string;
