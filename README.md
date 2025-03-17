@@ -138,22 +138,24 @@ En résumé, ce code initialise l'application React en utilisant le composant `A
 
 ## Sur la route
 
-Nous allons décomposer ce flux de rendu en utilisant React Router pour gérer la navigation. React Router est une bibliothèque qui nous permet de définir des routes pour notre application React, ce qui signifie que nous pouvons associer des composants spécifiques à des URL particulières.
+Nous allons décomposer ce flux de rendu en utilisant [React Router](https://reactrouter.com/home) pour gérer la navigation. React Router est une bibliothèque qui nous permet de définir des routes pour notre application React, ce qui signifie que nous pouvons associer des composants spécifiques à des URL particulières.
 
 Avant toute chose, fais un `git init` et un premier commit de l'application&nbsp;: cela te permettra de revenir en arrière au besoin.
 {: .alert-warning}
 
-Installe dans ton projet `react-router-dom` (la version de React Router pour le DOM, le web)&nbsp;:
+React Router propose plusieurs "modes" présentés dans la [documentation officielle](https://reactrouter.com/start/modes). Le mode "framework" est le résultat d'une fusion entre React Router et le framework Remix. C'est un mode plutôt avancé avec des écritures spécifiques. Dans cet atelier, nous allons plutôt détailler le mode "data" qui est le mode phare de React Router v7 en mode bibliothèque. Tu peux essayer le mode "declarative" de React Router en suivant la [documentation officielle](https://reactrouter.com/start/declarative/installation) : présenté comme plus simple par React Router, il correspond plutôt à du code "legacy" (du code d'avant la v7) mais tu pourras rencontrer des syntaxes de ce mode dans des projets existants ou sur des forums.
+
+Pour le mode "data", installe `react-router` dans ton projet&nbsp;:
 
 ```bash
-npm install react-router-dom
+npm install react-router
 ```
 
 Et modifie ensuite `main.tsx` comme ceci&nbsp;:
 
 ```jsx
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Link, RouterProvider } from "react-router";
 
 // page components
 
@@ -270,7 +272,7 @@ Mais tu as certainement remarqué qu'entre nos 2 routes, beaucoup de choses se r
 Le composant `<App />` peut encore nous être _utile_. Modifions le pour reprendre ce qui est commun à toutes nos routes&nbsp;:
 
 ```jsx
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 import "./App.css";
 
@@ -297,7 +299,7 @@ Pour illustrer cette idée, voici une nouvelle version du code&nbsp;:
 
 ```jsx
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router";
 
 import App from "./App";
 
@@ -371,7 +373,7 @@ Selon la valeur de cet état (`currentLocation`), nous pouvions choisir explicit
 Au lieu de spécifier explicitement quel composant doit être affiché dans `<main>`, nous pouvons utiliser un outil très pratique de React Router&nbsp;: `<Outlet />`.
 
 ```jsx
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router";
 
 import "./App.css";
 
@@ -433,7 +435,7 @@ Et modifie `src/main.tsx` (les autres routes ont été supprimées pour te facil
 
 ```jsx
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router";
 
 // page components
 
@@ -466,7 +468,7 @@ Grâce à ce segment dynamique, nous pouvons extraire l'identifiant de l'article
 React Router nous fournit encore tous les outils nécessaires. Cette fois, c'est le hook `useParams` qui va nous aider dans le composant `Article`&nbsp;:
 
 ```jsx
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
 function Article() {
   const { id } = useParams();
@@ -502,7 +504,7 @@ Tu peux remettre toutes les routes dans `src/main.tsx`&nbsp;:
 
 ```jsx
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router";
 
 import App from "./App";
 
@@ -548,7 +550,7 @@ if (rootElement != null) {
 Et ajouter des liens dans `App`&nbsp;:
 
 ```jsx
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router";
 
 import "./App.css";
 
